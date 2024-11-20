@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nova (An AI SAAS Realtime Video Sharing + Desktop App)
 
-## Getting Started
+Nova is a powerful AI-driven video sharing platform that combines a web application and desktop software to revolutionize how teams create, share, and analyze video content. Built with modern technologies like Next.js and Electron, Nova offers seamless video recording, real-time streaming, and AI-powered features including transcription and smart summaries. Perfect for sales teams, content creators, and businesses looking to enhance their video communication workflow with advanced features like workspace collaboration, viewer analytics, and premium quality recording options.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 📹 Real Time Video Recording and Streaming (no 3rd party library)
+- 💻 Web application using Next.js
+- 📤 Share Videos instantly With Prospects
+- 👥 Workspaces to invite team members
+- 📝 AI Transcriptions For Videos
+- 🤖 1 Time Try Now AI Features For Users
+- 💡 AI summary of videos along with titles and description
+- 💬 Activity feed for viewers to comment
+- 👁️ View count on each video
+- 📧 Email notification when the first viewer watches the video
+- 📸 Custom Thumbnail video embed inside emails for client outreach
+- 🖥️ Desktop application using Electron JS
+- ⚡ Express server for real-time Socket
+- 📺 Recording videos in 720p and 1080p
+- ⏳ Dynamic video length based on subscription plan
+- 🎙️ Getting access to users’ native devices on the desktop app
+- 📂 Saving presets of users’ devices
+- 🎥 Screen & Webcam capture
+- ☁️ Uploading videos to AWS
+- ⭐ Pro plan and free tier
+- 🛠️ CMS control for in-app marketing
+- 💳 Stripe for payments
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js
+- Bun
+- Tailwind CSS
+- Shadcn UI
+- Socket.io
+- Express
+- Stripe
+- AWS
+- Electron JS
+- OpenAI
+- AssemblyAI
+- Resend
+- Clerk
+- Lucid
+- Prisma
+- Zod
+- React Flow
+- React Hook Form
+- React Hot Toast
+- React Icons
+- React Player
+- React Split
+- React Time Ago
+- React Video
+- React Window
