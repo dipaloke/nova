@@ -1,4 +1,4 @@
-# Nova (An AI SAAS Realtime Video Sharing + Desktop App)
+# Nova ✨ - AI-Powered Video Platform for Modern Teams
 
 Nova is a powerful AI-driven video sharing platform that combines a web application and desktop software to revolutionize how teams create, share, and analyze video content. Built with modern technologies like Next.js and Electron, Nova offers seamless video recording, real-time streaming, and AI-powered features including transcription and smart summaries. Perfect for sales teams, content creators, and businesses looking to enhance their video communication workflow with advanced features like workspace collaboration, viewer analytics, and premium quality recording options.
 
