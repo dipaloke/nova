@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { NavigationItem } from "@/types";
+import { Menu } from "lucide-react";
 
 const navigationItems: NavigationItem[] = [
   {
@@ -32,9 +33,13 @@ const navigationItems: NavigationItem[] = [
 
 export function MainNav(): JSX.Element {
   return (
-    <nav className="flex items-center justify-between px-16 py-4 bg-background" aria-label="Main navigation">
-      <div className="flex items-center gap-8">
-        <Link href="/" aria-label="Nova home">
+    <div
+      className="flex items-center justify-between px-2 md:px-16 py-4 bg-background"
+      aria-label="Main navigation"
+    >
+      <div className="flex items-center gap-4">
+        <Menu className="w-6 h-6 md:hidden" />
+        <Link href="/" aria-label="Nova home" className="flex items-center text-xl">
           <Image
             src="/logo.svg"
             alt=""
@@ -42,8 +47,9 @@ export function MainNav(): JSX.Element {
             height={36}
             className="h-9"
           />
+          Nova
         </Link>
-        <NavigationMenu>
+        <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             {navigationItems.map((item) => (
               <NavigationMenuItem key={item.href}>
@@ -68,12 +74,12 @@ export function MainNav(): JSX.Element {
       </div>
       <div className="flex items-center gap-4">
         <Button variant="outline" asChild>
-          <Link href="/login">Join</Link>
+          <Link href="/auth/sign-in">Join</Link>
         </Button>
         <Button asChild>
           <Link href="/signup">Start</Link>
         </Button>
       </div>
-    </nav>
+    </div>
   );
 }
