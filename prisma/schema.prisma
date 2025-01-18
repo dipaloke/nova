@@ -12,3 +12,90 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id         String    @id     @default(dbgenerated("gen_random_uuid()"))    @db.Uuid
+  email      String         @unique
+  firstName  String?
+  lastName   String?
+  clerkId    String         @unique
+  image      String?
+  trial      Boolean           @default(false)
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+  studio     Media?
+  workSpaces  WorkSpace[]
+  videos      Video[]
+  comments    Comment[]
+}
+
+enum PRESET {
+  HD
+  SD
+}
+
+model Media {
+  id         String    @id     @default(dbgenerated("gen_random_uuid()"))    @db.Uuid
+  screen     String?
+  mic        String?
+  camera     String?
+  preset     PRESET            @default(SD)
+  user       User?              @relation(fields: [userId], references: [id])
+  userId     String               @unique @db.Uuid
+}
+
+enum TYPE {
+  PERSONAL
+  PUBLIC
+}
+
+model WorkSpace {
+   id         String    @id     @default(dbgenerated("gen_random_uuid()"))    @db.Uuid
+   type       TYPE
+   name       String
+   user       User?              @relation(fields: [userId], references: [id])
+   userId     String             @unique @db.Uuid
+   folders    Folder[]
+   videos     Video[]
+   createdAd  DateTime          @default(now())
+}
+
+model Folder {
+  id         String    @id     @default(dbgenerated("gen_random_uuid()"))    @db.Uuid
+  name       String    @default("Untitled Folder")
+  workSpace  WorkSpace?   @relation(fields: [workSpaceId], references: [id])
+  workSpaceId String?   @db.Uuid
+  videos      Video[]
+  createdAd  DateTime          @default(now())
+}
+
+model Video {
+  id         String    @id     @default(dbgenerated("gen_random_uuid()"))    @db.Uuid
+  title      String?  @default("Untitled Video")
+  description String?  @default("No Description")
+  source      String   @unique
+  folder      Folder?  @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId    String?  @db.Uuid
+  user       User?              @relation(fields: [userId], references: [id])
+  userId     String             @unique @db.Uuid
+  processing Boolean  @default(true)
+  workSpace  WorkSpace?   @relation(fields: [workSpaceId], references: [id])
+  workSpaceId String?   @db.Uuid
+  views     Int   @default(0)
+  summery   String?
+  comments    Comment[]
+  createdAd  DateTime          @default(now())
+}
+
+model Comment {
+  id         String    @id     @default(dbgenerated("gen_random_uuid()"))    @db.Uuid
+  comment    String
+  replay     Comment[]  @relation("replay")
+  Comment    Comment?   @relation("replay", fields: [commentId], references: [id])
+  commentId  String?    @db.Uuid
+  user       User?              @relation(fields: [userId], references: [id])
+  userId     String             @unique @db.Uuid
+  video      Video?            @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  videoId    String?      @db.Uuid
+  createdAd  DateTime          @default(now())
+}
