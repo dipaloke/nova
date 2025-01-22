@@ -118,7 +118,7 @@ model Subscription {
   user          User?              @relation(fields: [userId], references: [id])
   userId        String?            @unique @db.Uuid
   customerId    String?            @unique
-  plan          SUBSCRIPTION_PLAN
+  plan          SUBSCRIPTION_PLAN  @default(FREE)
   createdAd     DateTime           @default(now())
   updatedAt     DateTime           @updatedAt
 }
