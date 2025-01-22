@@ -39,7 +39,11 @@ export function MainNav(): JSX.Element {
     >
       <div className="flex items-center gap-4">
         <Menu className="w-6 h-6 md:hidden" />
-        <Link href="/" aria-label="Nova home" className="flex items-center text-xl">
+        <Link
+          href="/"
+          aria-label="Nova home"
+          className="flex items-center text-xl"
+        >
           <Image
             src="/logo.svg"
             alt=""
@@ -77,7 +81,7 @@ export function MainNav(): JSX.Element {
           <Link href="/auth/sign-in">Join</Link>
         </Button>
         <Button asChild>
-          <Link href="/signup">Start</Link>
+          <Link href="/auth/sign-up">Start</Link>
         </Button>
       </div>
     </div>

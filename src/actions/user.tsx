@@ -78,7 +78,7 @@ export const onAuthenticateUser = async () => {
 
     // Return the newly created user data
     if(newUser){
-      return  { status: 200, user: newUser };
+      return  { status: 201, user: newUser };
     }
 
     // Return bad request if user creation fails

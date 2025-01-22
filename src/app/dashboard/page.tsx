@@ -1,11 +1,21 @@
+import { onAuthenticateUser } from '@/actions/user'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 type Props = {}
 
-const DashboardPage = (props: Props) => {
-    // TODO: Authentication
+const DashboardPage = async (props: Props) => {
+    // Authentication
+    const auth = await onAuthenticateUser()
 
-    // TODO: If account doesn't exists redirect
+    if(auth.status === 200 || auth.status === 201) {
+      return redirect(`/dashboard/${auth.user?.firstName}${auth.user?.lastName}`)
+    }
+
+    if(auth.status === 400 || auth.status === 500 || auth.status === 404) {
+      return redirect("/auth/sign-in")
+    }
+
   return (
     <div>DashboardPage</div>
   )
