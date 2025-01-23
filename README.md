@@ -32,7 +32,7 @@ Nova is a powerful AI-driven video sharing platform that combines a web applicat
 - Next.js
 - Bun
 - Tailwind CSS
-- Shadcn UI
+- ShadCN UI
 - Socket.io
 - Express
 - Stripe
@@ -45,6 +45,7 @@ Nova is a powerful AI-driven video sharing platform that combines a web applicat
 - Lucid
 - Prisma
 - Zod
+- React Query
 - React Flow
 - React Hook Form
 - React Hot Toast
@@ -53,4 +54,4 @@ Nova is a powerful AI-driven video sharing platform that combines a web applicat
 - React Split
 - React Time Ago
 - React Video
-- React Window 
+- React Window
