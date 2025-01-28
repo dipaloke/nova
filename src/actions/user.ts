@@ -20,7 +20,7 @@ export const onAuthenticateUser = async () => {
       },
       include: {
         // Include user's workspaces in the query response
-        workSpaces: {
+        workspaces: {
           where: {
             user: {
               clerkId: user.id,
@@ -52,7 +52,7 @@ export const onAuthenticateUser = async () => {
           create: {},
         },
         // Create default personal workspace
-        workSpaces: {
+        workspaces: {
           create: {
             name: `${user.firstName}'s Workspace`,
             type: "PERSONAL",
@@ -61,7 +61,7 @@ export const onAuthenticateUser = async () => {
       },
       // Include workspace and subscription info in the response
       include: {
-        workSpaces: {
+        workspaces: {
           where: {
             user: {
               clerkId: user.id,
@@ -86,5 +86,42 @@ export const onAuthenticateUser = async () => {
   } catch (error) {
     // Return server error if any exception occurs
     return {status: 500, errorMessage: error}
+  }
+};
+
+/**
+ * Retrieves all notifications for the current user
+ * @returns Object containing status and notifications data with count
+ */
+export const getNotifications = async () => {
+  try {
+    // Get current authenticated user
+    const user = await currentUser();
+    if (!user) return { status: 404 };
+
+    // Query user's notifications and get total count
+    const notification = await db.user.findUnique({
+      where: {
+        clerkId: user.id,
+      },
+      select: {
+        notifications: true,
+        _count: {
+          select: {
+            notifications: true,
+          },
+        },
+      },
+    });
+
+    // Return notifications if found
+    if (notification && notification.notifications.length > 0)
+      return { status: 200, data: notification };
+
+    // Return empty array if no notifications found
+    return { status: 404, data: [] };
+  } catch (error) {
+    // Return error if query fails
+    return { status: 403, data: [error] };
   }
 };

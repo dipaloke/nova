@@ -22,7 +22,7 @@ model User {
   image             String?
   trial             Boolean             @default(false)
   studio            Media?
-  workSpaces        WorkSpace[]
+  workspaces        Workspace[]
   videos            Video[]
   comments          Comment[]
   subscription      Subscription?
@@ -55,7 +55,7 @@ enum TYPE {
   PUBLIC
 }
 
-model WorkSpace {
+model Workspace {
    id         String    @id     @default(dbgenerated("gen_random_uuid()"))    @db.Uuid
    type       TYPE
    name       String
@@ -71,8 +71,8 @@ model WorkSpace {
 model Folder {
   id              String    @id     @default(dbgenerated("gen_random_uuid()"))    @db.Uuid
   name            String            @default("Untitled Folder")
-  workSpace       WorkSpace?        @relation(fields: [workSpaceId], references: [id])
-  workSpaceId     String?           @db.Uuid
+  workspace       Workspace?        @relation(fields: [workspaceId], references: [id])
+  workspaceId     String?           @db.Uuid
   videos          Video[]
   createdAd       DateTime          @default(now())
 }
@@ -87,8 +87,8 @@ model Video {
   user            User?               @relation(fields: [userId], references: [id])
   userId          String?             @unique @db.Uuid
   processing      Boolean             @default(true)
-  workSpace       WorkSpace?          @relation(fields: [workSpaceId], references: [id])
-  workSpaceId     String?             @db.Uuid
+  workspace       Workspace?          @relation(fields: [workspaceId], references: [id])
+  workspaceId     String?             @db.Uuid
   views           Int                 @default(0)
   summery         String?
   comments        Comment[]
@@ -128,7 +128,7 @@ model Member {
   user            User?               @relation(fields: [userId], references: [id])
   userId          String?             @unique @db.Uuid
   member          Boolean             @default(true)
-  workspace       WorkSpace?          @relation(fields: [workspaceId], references: [id])
+  workspace       Workspace?          @relation(fields: [workspaceId], references: [id])
   workspaceId     String?             @db.Uuid
   createdAd       DateTime            @default(now())
 }
@@ -147,7 +147,7 @@ model Invite {
   receiver       User?             @relation("receiver", fields: [receiverId], references: [id])
   receiverId     String?           @db.Uuid
   content        String
-  workspace      WorkSpace?        @relation(fields: [workspaceId], references: [id])
+  workspace      Workspace?        @relation(fields: [workspaceId], references: [id])
   workspaceId    String?           @db.Uuid
   accepted       Boolean           @default(false)
 }
